@@ -1,7 +1,7 @@
-From e7ff323818bfd2bbf7d00a885e5a28da9b36f64b Mon Sep 17 00:00:00 2001
+From 7f6222f189298da11d8c8d0c5596d455ef6e057f Mon Sep 17 00:00:00 2001
 From: Ray Donnelly <mingw.android@gmail.com>
-Date: Sat, 12 Dec 2015 19:55:47 +0000
-Subject: [PATCH 7/7] lang: Add cmake (^CMakeLists.txt, ^CMakeCache.txt ..
+Date: Tue, 18 Aug 2020 13:57:01 +0900
+Subject: [PATCH 7/8] lang: Add cmake (^CMakeLists.txt, ^CMakeCache.txt ..
 
 .. ^CMakeError.log, ^CMakeOutput.log, cmake)
 ---
@@ -9,17 +9,17 @@ Subject: [PATCH 7/7] lang: Add cmake (^CMakeLists.txt, ^CMakeCache.txt ..
  1 file changed, 1 insertion(+)
 
 diff --git a/src/lang.c b/src/lang.c
-index 0848fb1..b608180 100644
+index 85e6ecf..355ce6a 100644
 --- a/src/lang.c
 +++ b/src/lang.c
-@@ -18,6 +18,7 @@ lang_spec_t langs[] = {
+@@ -20,6 +20,7 @@ lang_spec_t langs[] = {
      { "cfmx", { "cfc", "cfm", "cfml" } },
      { "chpl", { "chpl" } },
-     { "clojure", { "clj", "cljs", "cljc", "cljx" } },
+     { "clojure", { "clj", "cljs", "cljc", "cljx", "edn" } },
 +    { "cmake", { "^CMakeLists.txt", "^CMakeCache.txt", "^CMakeError.log", "^CMakeOutput.log", "cmake" } },
      { "coffee", { "coffee", "cjsx" } },
+     { "config", { "config" } },
      { "coq", { "coq", "g", "v" } },
-     { "cpp", { "cpp", "cc", "C", "cxx", "m", "hpp", "hh", "h", "H", "hxx", "tpp" } },
 -- 
-2.12.1
+2.27.0
 

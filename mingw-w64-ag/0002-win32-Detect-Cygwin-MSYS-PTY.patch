@@ -1,7 +1,7 @@
-From d7dfee733c29dae96984be373db934298d4ac53f Mon Sep 17 00:00:00 2001
+From 4fbab8e78285944da368c15178cbd05405ccae26 Mon Sep 17 00:00:00 2001
 From: "K.Takata" <kentkt@csc.jp>
 Date: Thu, 1 Jun 2017 22:19:25 +0900
-Subject: [PATCH 2/7] win32: Detect Cygwin/MSYS PTY
+Subject: [PATCH 2/8] win32: Detect Cygwin/MSYS PTY
 
 When running Win32 version of Ag on mintty or other Cygwin/MSYS terminal
 emulators, Ag cannot detect Cygwin/MSYS pty and it causes some problems.
@@ -14,8 +14,8 @@ Import a check routine from https://github.com/k-takata/ptycheck .
  Makefile.am     |   2 +-
  Makefile.w32    |   5 +-
  configure.ac    |   1 +
- src/iscygpty.c  | 185 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/iscygpty.h  |  41 +++++++++++++
+ src/iscygpty.c  | 185 ++++++++++++++++++++++++++++++++++++++++++++++++
+ src/iscygpty.h  |  41 +++++++++++
  src/options.c   |   5 +-
  src/print_w32.c |   2 +
  7 files changed, 236 insertions(+), 5 deletions(-)
@@ -23,7 +23,7 @@ Import a check routine from https://github.com/k-takata/ptycheck .
  create mode 100644 src/iscygpty.h
 
 diff --git a/Makefile.am b/Makefile.am
-index 93aac08..29ad4bd 100644
+index 3931c3a..ead4a80 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -1,7 +1,7 @@
@@ -54,7 +54,7 @@ index 2794651..9688bba 100644
  TARGET = ag.exe
  
 diff --git a/configure.ac b/configure.ac
-index 3fa9c98..8808c69 100644
+index 1267ce5..bf2b7d8 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -36,6 +36,7 @@ LDFLAGS="$LDFLAGS"
@@ -67,7 +67,7 @@ index 3fa9c98..8808c69 100644
  LIBS="$PTHREAD_LIBS $LIBS"
 diff --git a/src/iscygpty.c b/src/iscygpty.c
 new file mode 100644
-index 0000000..6a0d63e
+index 0000000..722f88f
 --- /dev/null
 +++ b/src/iscygpty.c
 @@ -0,0 +1,185 @@
@@ -304,7 +304,7 @@ index 0000000..82fd0af
 +
 +#endif /* _ISCYGPTY_H */
 diff --git a/src/options.c b/src/options.c
-index b8da938..83152c5 100644
+index 91127cb..3c23d75 100644
 --- a/src/options.c
 +++ b/src/options.c
 @@ -10,6 +10,7 @@
@@ -315,7 +315,7 @@ index b8da938..83152c5 100644
  #include "lang.h"
  #include "log.h"
  #include "options.h"
-@@ -350,7 +351,7 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
+@@ -357,7 +358,7 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
  
      rv = fstat(fileno(stdin), &statbuf);
      if (rv == 0) {
@@ -324,7 +324,7 @@ index b8da938..83152c5 100644
              opts.search_stream = 1;
          }
      }
-@@ -359,7 +360,7 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
+@@ -366,7 +367,7 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
          * turn off colors
          * print filenames on every line
       */
@@ -353,5 +353,5 @@ index a1fd387..f0a8de6 100644
          INVALID_HANDLE_VALUE == (stdo = (HANDLE)_get_osfhandle(fileno(fp))) ||
          !GetConsoleScreenBufferInfo(stdo, &csbi);
 -- 
-2.12.1
+2.27.0
 

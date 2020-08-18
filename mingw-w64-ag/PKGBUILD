@@ -17,7 +17,7 @@ depends=("${MINGW_PACKAGE_PREFIX}-pcre"
          "${MINGW_PACKAGE_PREFIX}-xz"
          "${MINGW_PACKAGE_PREFIX}-zlib")
 options=('staticlibs') # '!strip' 'debug')
-source=("${_realname}-${pkgver}.tar.gz"::"https://github.com/ggreer/the_silver_searcher/archive/${pkgver}.tar.gz"
+source=(${_realname}::"git+https://github.com/ggreer/the_silver_searcher"
         "0001-lang-Allow-both-extensions-and-full-filenames.patch"
         "0002-win32-Detect-Cygwin-MSYS-PTY.patch"
         "0003-options-Fix-ordering-problems-with-color.patch"
@@ -26,7 +26,7 @@ source=("${_realname}-${pkgver}.tar.gz"::"https://github.com/ggreer/the_silver_s
         "0006-lang-Add-makepkg-PKGBUILD-diff-patch-in-install.patch"
         "0007-lang-Add-cmake-CMakeLists.txt-CMakeCache.txt.patch"
         "0008-win32-Use-NUL-for-git-config.patch")
-sha256sums=('6a0a19ca5e73b2bef9481c29a508d2413ca1a0a9a5a6b1bd9bbd695a7626cbf9'
+sha256sums=('SKIP'
             '9a3c1cc11547219f699e953e05c53b779f396b3d54d1410ae78a62f7550ca7c7'
             '45b75b164cb283c4324e27a46c744e0f2df86e4860506e9a4f2c1e98e848f51e'
             '63ded2c4bf859faa8dc33cbda89c4bbdb047b014d7b3b4d3f77f9dfb5d1a0ee4'
